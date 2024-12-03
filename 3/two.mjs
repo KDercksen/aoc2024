@@ -11,7 +11,3 @@ for (const match of data.matchAll(pattern)) {
   else if (active) result += Number(match[1]) * Number(match[2]);
 }
 console.log(result);
-
-// const result = [...data.matchAll(pattern)]
-//   .map((match) => Number(match[1]) * Number(match[2]))
-//   .reduce((acc, curr) => acc + curr, 0);
