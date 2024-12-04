@@ -4,7 +4,6 @@ const data = fs
   .readFileSync("./data.txt", "utf8")
   .split("\n")
   .map((line) => line.split(""));
-console.log(data);
 
 const findXMAS = (data) => {
   const rows = data.length;
