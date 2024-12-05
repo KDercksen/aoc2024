@@ -19,3 +19,32 @@ const checkPage = (page, ordering) => {
   }
   return true;
 };
+
+const incorrectPages = pages.filter((page) => !checkPage(page, ordering));
+
+// implement a bubble sort function to order the pages
+const bubbleSort = (page, ordering) => {
+  let tmpPage = [...page];
+  let swapped;
+  do {
+    swapped = false;
+    for (let i = 0; i < tmpPage.length - 1; i++) {
+      // If current number doesn't have next number in its ordering, swap them
+      if (!ordering[tmpPage[i]]?.includes(tmpPage[i + 1])) {
+        const temp = tmpPage[i];
+        tmpPage[i] = tmpPage[i + 1];
+        tmpPage[i + 1] = temp;
+        swapped = true;
+      }
+    }
+  } while (swapped);
+  return tmpPage;
+};
+
+const sortedPages = incorrectPages.map((page) => bubbleSort(page, ordering));
+
+console.log(
+  sortedPages
+    .map((page) => page[Math.floor(page.length / 2)])
+    .reduce((acc, num) => acc + num, 0)
+);
