@@ -32,18 +32,15 @@ const outOfBounds = (pos, direction) => {
 let currentPos = startPos;
 let currentDirection = direction;
 const visited = new Set();
-visited.add(currentPos.join(","));
-while (!outOfBounds(currentPos, direction)) {
+do {
   const nextPos = peek(currentPos, currentDirection);
   if (nextPos === "#") {
     currentDirection = turnRight(currentDirection);
   } else {
+    visited.add(currentPos.join(","));
     currentPos = [
       currentPos[0] + currentDirection[0],
       currentPos[1] + currentDirection[1],
     ];
-    visited.add(currentPos.join(","));
   }
-}
-
-console.log(visited.size - 1);
+} while (!outOfBounds(currentPos, direction));
